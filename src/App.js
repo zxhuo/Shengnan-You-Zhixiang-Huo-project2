@@ -1,26 +1,26 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-import './App.css';
+import React from "react";
+import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 
-import Home from './components/routes/Home';
-import Rule from './components/routes/Rule';
-import Navigation from './components/routes/Navigation';
-import Gameeasy from './components/routes/Gameeasy';
-import Gamemedium from './components/routes/Gamemedium';
-import Gamehard from './components/routes/Gamehard';
+import Home from "./components/Home";
+import Rule from "./components/Rule";
+import Navigation from "./components/Navigation";
+import Game from "./components/games/Game";
 
+import "./App.css";
 function App() {
   return (
-    <Routes>
-      <Route path='/' element={<Navigation />}>
-        <Route index element={<Home />}/>
-        <Route path='rule' element={<Rule />}/>
-        <Route path='easy' element={<Gameeasy />}/>
-        <Route path='medium' element={<Gamemedium />}/>
-        <Route path='hard' element={<Gamehard />}/>
-      </Route>
-    </Routes>
-
+    <div className="ui container">
+      <Router>
+        <nav>
+        <Navigation />
+        </nav>
+        <Routes>
+          <Route index element={<Home />} />
+          <Route path="games/:level" element={<Game/>} />
+          <Route path="rule" element={<Rule />} />
+        </Routes>
+      </Router>
+    </div>
   );
 }
 
