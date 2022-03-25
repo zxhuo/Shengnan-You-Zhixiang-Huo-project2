@@ -1,24 +1,26 @@
-import logo from './logo.svg';
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
+
+import Home from './components/routes/Home';
+import Rule from './components/routes/Rule';
+import Navigation from './components/routes/Navigation';
+import Gameeasy from './components/routes/Gameeasy';
+import Gamemedium from './components/routes/Gamemedium';
+import Gamehard from './components/routes/Gamehard';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path='/' element={<Navigation />}>
+        <Route index element={<Home />}/>
+        <Route path='rule' element={<Rule />}/>
+        <Route path='easy' element={<Gameeasy />}/>
+        <Route path='medium' element={<Gamemedium />}/>
+        <Route path='hard' element={<Gamehard />}/>
+      </Route>
+    </Routes>
+
   );
 }
 
