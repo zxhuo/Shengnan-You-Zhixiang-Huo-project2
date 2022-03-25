@@ -16,7 +16,7 @@ function App() {
         </nav>
         <Routes>
           <Route index element={<Home />} />
-          <Route path="games/:level" element={<Game/>} />
+          <Route path="games/:level" element={<Game />} />
           <Route path="rule" element={<Rule />} />
         </Routes>
       </Router>
