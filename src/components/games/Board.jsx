@@ -1,23 +1,19 @@
-import React from 'react'
-import React, { useContext } from "react";
-import { AppContext } from "../App";
+import React from 'react';
+import { useGameContext } from '../../contexts/GameProvider';
 import Letter from "./Letter";
 
-function Board({ len: row, attempt: col }) {
-    const a
+function Board() {
+    let {row, col} = useGameContext();
+    const colNum = Array.from(Array(null, col).keys());
+    const rowNum = Array.from(Array(null,row).keys());
  
   return (
       <div className='board'>
-          <div className="row">
-        <Letter letterPos={0} attemptVal={0} />
-        <Letter letterPos={1} attemptVal={0} />
-        <Letter letterPos={2} attemptVal={0} />
-        <Letter letterPos={3} attemptVal={0} />
-        <Letter letterPos={4} attemptVal={0} />
         {rowNum.map(r =>
-                    <div key={r}>{colNum.map}</div>
+            <div className="row" key={r}>{colNum.map(c =>
+                <Letter letterPos={c} attemptVal={r} />
+                    )}</div>
         )}
-      </div>
     </div>
   )
 }

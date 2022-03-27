@@ -7,6 +7,7 @@ import Navigation from "./components/Navigation";
 import Game from "./components/games/Game";
 
 import "./App.css";
+
 function App() {
   return (
     <div className="ui container">

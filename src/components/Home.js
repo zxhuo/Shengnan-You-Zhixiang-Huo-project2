@@ -36,7 +36,6 @@ function home() {
               Select
               </Link>
               
-           
             </div>
             <i class="chess king icon"></i>
             <div class="content">

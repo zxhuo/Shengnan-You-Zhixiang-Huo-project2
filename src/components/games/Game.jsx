@@ -1,40 +1,32 @@
-import React, { useState } from 'react'
-import Board from "./components/Board";
-import Keyboard from "./components/Keyboard";
-import { boardDefault, generateWordSet } from "./Words";
-import React, { useState, createContext, useEffect } from "react";
-import GameOver from "./components/GameOver";
+import React, {useParams} from 'react'
+import Board from "./Board";
+import Keyboard from "./Keyboard";
+import GameOver from "./GameOver";
 
+import { GameProvider,useGameContext } from '../../contexts/GameProvider'
 
-
-multiplyNode(document.querySelector('.box'), 5, true);
 function Game() {
     let { level } = useParams();
-    const [board, setBoard] = useState(boardDefault);
-
-    if (level == 'hard') {
-        setBoard()
+    let len;
+    let trytime;
+    const { gameOver }  = useGameContext();
+    if (level === 'hard') {
+        len = 7;
+        trytime = 5;
+    } else if (level === 'medium') {
+        len = 6;
+        trytime = 6;
+    }else {
+        len = 5;
+        trytime = 7;
     }
     return (
         <div className="game ui container">
-          <AppContext.Provider
-            value={{
-              board,
-              setBoard,
-              currAttempt,
-              setCurrAttempt,
-              correctWord,
-              onSelectLetter,
-              onDelete,
-              onEnter,
-              setDisabledLetters,
-              disabledLetters,
-              gameOver,
-            }}
-          >
-              <Board />
-              {gameOver.gameOver ? <GameOver /> : <Keyboard />}
-          </AppContext.Provider>
+            <GameProvider len={len} try={trytime} >
+               <Board />
+               {gameOver.gameOver ? <GameOver /> : <Keyboard />}
+            </GameProvider>
+    
         </div>
       );
 }
