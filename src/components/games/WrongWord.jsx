@@ -1,42 +1,42 @@
 import React from 'react'
-import {  useState } from 'react';
-import { Button, Header, Icon, Modal } from 'semantic-ui-react'
+import { Button, Header, Image, Modal } from 'semantic-ui-react'
 
+function ModalExampleModal() {
+  const [open, setOpen] = React.useState(false)
 
-function WrongWord(props) {
-
-  const [open, setOpen] = useState(false);
   return (
     <Modal
-    basic
-    onClose={() => setOpen(false)}
-    onOpen={() => setOpen(true)}
-    open={open}
-    size='small'
-    trigger={<Button>Rule</Button>}
-  >
-    <Header>
-      HOW TO PLAY
-    </Header>
-
-    <Modal.Content>
-      <div className='instructions'>
-        <p>Guess the WORDLE in seven tries.</p>
-        <p>Each guess must be a valid five-letter word. Hit the enter button to submit.</p>
-        <p>After each guess, the color of the tiles will change to show how close your guess was to the word.</p>
-
-        <div className='examples'>
-          <p><strong>EXAMPLE</strong></p>
-        </div>
-      </div>
-    </Modal.Content>
-    <Modal.Actions>
-      <Button basic color='red' inverted onClick={() => setOpen(false)}>
-        <Icon name='remove' /> Close
-      </Button>
-    </Modal.Actions>
-  </Modal>
+      onClose={() => setOpen(false)}
+      onOpen={() => setOpen(true)}
+      open={open}
+      trigger={<Button>Show Modal</Button>}
+    >
+      <Modal.Header>Select a Photo</Modal.Header>
+      <Modal.Content image>
+        <Image size='medium' src='https://react.semantic-ui.com/images/avatar/large/rachel.png' wrapped />
+        <Modal.Description>
+          <Header>Default Profile Image</Header>
+          <p>
+            We've found the following gravatar image associated with your e-mail
+            address.
+          </p>
+          <p>Is it okay to use this photo?</p>
+        </Modal.Description>
+      </Modal.Content>
+      <Modal.Actions>
+        <Button color='black' onClick={() => setOpen(false)}>
+          Nope
+        </Button>
+        <Button
+          content="Yep, that's me"
+          labelPosition='right'
+          icon='checkmark'
+          onClick={() => setOpen(false)}
+          positive
+        />
+      </Modal.Actions>
+    </Modal>
   )
 }
 
-export default WrongWord;
+export default ModalExampleModal

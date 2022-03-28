@@ -3,7 +3,7 @@ import randomWords from 'random-words'
 import wordBankHard from "../wordle-bank-hard.txt";
 import wordBankMedium from "../wordle-bank-medium.txt";
 import wordBankEasy from "../wordle-bank-easy.txt";
-
+import WrongWord from "../components/games/WrongWord";
 
 export const GameContext = createContext();
 
@@ -27,7 +27,8 @@ export function GameProvider({ len, trytime, children }) {
     guessedWord: false,
   });
   const setNewBoard = (board, key) => {
-    console.log(board +" board");
+    console.log(board + " board");
+    console.log(correctWord);
     const newBoard = [];
     for (let r = 0; r< board.length; r++) {
       newBoard[r] = [...board[r]];
@@ -65,7 +66,7 @@ export function GameProvider({ len, trytime, children }) {
         case 5: bank = wordBankEasy; break;
         default: bank = wordBankEasy; break;
       }
-      wordArr = randomWords({ exactly: 100000, min: col, max: col });
+      wordArr = randomWords({ exactly: 100000, min: 5, max: len });
       selectWord = wordArr[Math.floor(Math.random() * wordArr.length)];
       wordSet = new Set(wordArr);
       // await fetch(bank)
@@ -98,6 +99,7 @@ export function GameProvider({ len, trytime, children }) {
 
     } else {
       clearBoard(currAttempt.attempt);
+      
       setCurrAttempt({ ...currAttempt,  letter: 0 });
       return;
     }
@@ -107,7 +109,7 @@ export function GameProvider({ len, trytime, children }) {
       return;
     }
 
-    if (currAttempt.attempt === row) {
+    if (currAttempt.attempt === row  - 1 ) {
       setGameOver({ gameOver: true, guessedWord: false });
       return;
     }
@@ -149,7 +151,8 @@ export function GameProvider({ len, trytime, children }) {
       disabledLetters,
       gameOver,
     }}
-  >
+    >
+      <WrongWord  />
       {children}
     </GameContext.Provider>
   )

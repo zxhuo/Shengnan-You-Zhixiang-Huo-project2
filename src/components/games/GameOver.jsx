@@ -6,8 +6,8 @@ function GameOver() {
     currAttempt,
     gameOver,
     correctWord,
-  } = useGameContext;
-    
+  } = useGameContext();
+  
   return (
     <div className="gameOver">
       <h3>
