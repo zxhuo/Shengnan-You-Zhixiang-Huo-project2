@@ -9,7 +9,7 @@ function home() {
         <h1 className='ui large header'>Select Your Difficulty Level</h1>
         <div className="item">
           <div className="right floated content">
-            <Link className='item ui button' to='/games/hard'>
+            <Link className='item ui button' to='/games/easy'>
               Select
             </Link>
             </div>
@@ -20,7 +20,7 @@ function home() {
         </div>
         <div className="item">
           <div className="right floated content">
-          <Link className='item ui button' to='/games/hard'>
+          <Link className='item ui button' to='/games/medium'>
               Select
             </Link>
             </div>
