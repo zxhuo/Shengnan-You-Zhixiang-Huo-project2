@@ -1,5 +1,5 @@
 import React, { useState, createContext, useEffect, useContext } from "react";
-
+import randomWords from 'random-words'
 import wordBankHard from "../wordle-bank-hard.txt";
 import wordBankMedium from "../wordle-bank-medium.txt";
 import wordBankEasy from "../wordle-bank-easy.txt";
@@ -26,14 +26,17 @@ export function GameProvider({ len, trytime, children }) {
     gameOver: false,
     guessedWord: false,
   });
-  const setNewBoard = (board,key) => {
+  const setNewBoard = (board, key) => {
     console.log(board +" board");
     const newBoard = [];
     for (let r = 0; r< board.length; r++) {
       newBoard[r] = [...board[r]];
     }
     console.log(newBoard + " newboard");
-    newBoard[currAttempt.attempt][currAttempt.letter] = key;
+    if (key === '') {
+      newBoard[currAttempt.attempt][currAttempt.letter-1] = key;
+    }
+    else newBoard[currAttempt.attempt][currAttempt.letter] = key;
     setBoard(newBoard);
   }
 
@@ -55,19 +58,23 @@ export function GameProvider({ len, trytime, children }) {
       let wordSet;
       let selectWord;
       let bank;
+      let wordArr;
       switch (len) {
         case 7: bank = wordBankHard; break;
         case 6: bank = wordBankMedium; break;
         case 5: bank = wordBankEasy; break;
         default: bank = wordBankEasy; break;
       }
-      await fetch(bank)
-        .then((response) => response.text())
-        .then((result) => {
-          const wordArr = result.split("\n");
-          selectWord = wordArr[Math.floor(Math.random() * wordArr.length)];
-          wordSet = new Set(wordArr);
-        });
+      wordArr = randomWords({ exactly: 100000, min: col, max: col });
+      selectWord = wordArr[Math.floor(Math.random() * wordArr.length)];
+      wordSet = new Set(wordArr);
+      // await fetch(bank)
+      //   .then((response) => response.text())
+      //   .then((result) => {
+      //     const wordArr = result.split("\n");
+      //     selectWord = wordArr[Math.floor(Math.random() * wordArr.length)];
+      //     wordSet = new Set(wordArr);
+      //   });
       return { wordSet, selectWord };
     };
     generateWordSet().then((words) => {
@@ -88,6 +95,7 @@ export function GameProvider({ len, trytime, children }) {
     }
     if (wordSet.has(currWord.toLowerCase())) {
       setCurrAttempt({ attempt: currAttempt.attempt + 1, letter: 0 });
+
     } else {
       clearBoard(currAttempt.attempt);
       setCurrAttempt({ ...currAttempt,  letter: 0 });
@@ -107,12 +115,14 @@ export function GameProvider({ len, trytime, children }) {
 
   const onDelete = () => {
     if (currAttempt.letter === 0) return;
-    setNewBoard(board, "");
+    setNewBoard(board, '');
     setCurrAttempt({ ...currAttempt, letter: currAttempt.letter - 1 });
+    
   };
 
   const onSelectLetter = (key) => {
     if (currAttempt.attempt > row - 1) return;
+    if (currAttempt.letter > col - 1) return;
     setNewBoard(board, key)
     setCurrAttempt({
       ...currAttempt, 

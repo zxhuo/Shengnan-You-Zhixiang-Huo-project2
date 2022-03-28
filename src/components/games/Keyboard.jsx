@@ -11,7 +11,6 @@ function Keyboard() {
     []);
 
   const {
-    board,
     disabledLetters,
     currAttempt,
     gameOver,
