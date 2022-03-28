@@ -13,11 +13,12 @@ function Key({ keyVal, bigKey, disabled }) {
 
   const selectLetter = () => {
     if (gameOver.gameOver) return;
-    if (keyVal === "ENTER") {
+    if (keyVal == "ENTER") {
       onEnter();
-    } else if (keyVal === "DELETE") {
+    } else if (keyVal == "DELETE") {
       onDelete();
     } else {
+      console.log("key clicked: " + keyVal)
       onSelectLetter(keyVal);
     }
   };

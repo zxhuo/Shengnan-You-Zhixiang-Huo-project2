@@ -1,5 +1,5 @@
 import React from 'react'
-import {  Link, useParams } from 'react-router-dom';
+import {  Link } from 'react-router-dom';
 
 function home() {
   return (
@@ -7,38 +7,38 @@ function home() {
       <div className='content'>
     <div className="ui middle aligned divided list ">
         <h1 className='ui large header'>Select Your Difficulty Level</h1>
-        <div class="item">
-          <div class="right floated content">
+        <div className="item">
+          <div className="right floated content">
             <Link className='item ui button' to='/games/hard'>
               Select
             </Link>
             </div>
-            <i class="chess king icon"></i>
-            <div class="content ">
+            <i className="chess king icon"></i>
+            <div className="content ">
             Easy
           </div>
         </div>
-        <div class="item">
-          <div class="right floated content">
+        <div className="item">
+          <div className="right floated content">
           <Link className='item ui button' to='/games/hard'>
               Select
             </Link>
             </div>
             
-            <i class="chess king icon"></i>
-            <div class="ui large medium content ">
+            <i className="chess king icon"></i>
+            <div className="ui large medium content ">
             Medium
           </div>
         </div>
-        <div class="item">
-          <div class="right floated content">
+        <div className="item">
+          <div className="right floated content">
           <Link className='item ui button' to='/games/hard'>
               Select
               </Link>
               
             </div>
-            <i class="chess king icon"></i>
-            <div class="content">
+            <i className="chess king icon"></i>
+            <div className="content">
           Hard
           </div>
         </div>

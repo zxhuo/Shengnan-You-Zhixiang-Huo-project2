@@ -1,13 +1,16 @@
 import wordBank from "./wordle-bank.txt";
 
-export const boardDefault = [
-  ["", "", "", "", ""],
-  ["", "", "", "", ""],
-  ["", "", "", "", ""],
-  ["", "", "", "", ""],
-  ["", "", "", "", ""],
-  ["", "", "", "", ""],
-];
+// export const boardDefault = [
+//   ["", "", "", "", ""],
+//   ["", "", "", "", ""],
+//   ["", "", "", "", ""],
+//   ["", "", "", "", ""],
+//   ["", "", "", "", ""],
+//   ["", "", "", "", ""],
+// ];
+export const setDefaultBoard = () => {
+    return  Array(row).fill(null).map(() => Array(col));
+};
 
 export const generateWordSet = async () => {
   let wordSet;

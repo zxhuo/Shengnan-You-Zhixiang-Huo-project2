@@ -1,16 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useGameContext } from '../../contexts/GameProvider'
 
 function GameOver() {
   const {
-    board,
-    setBoard,
     currAttempt,
     gameOver,
-    onSelectLetter,
     correctWord,
-    onDelete,
   } = useGameContext;
+    
   return (
     <div className="gameOver">
       <h3>

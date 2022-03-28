@@ -4,7 +4,7 @@ import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import Home from "./components/Home";
 import Rule from "./components/Rule";
 import Navigation from "./components/Navigation";
-import Game from "./components/games/Game";
+import GameLevel from "./components/GameLevel";
 
 import "./App.css";
 
@@ -17,7 +17,7 @@ function App() {
         </nav>
         <Routes>
           <Route index element={<Home />} />
-          <Route path="games/:level" element={<Game />} />
+          <Route path="games/:level" element={<GameLevel />} />
           <Route path="rule" element={<Rule />} />
         </Routes>
       </Router>
