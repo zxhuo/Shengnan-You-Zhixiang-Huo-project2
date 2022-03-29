@@ -2,11 +2,7 @@ import React, { useState, createContext, useEffect, useContext } from "react";
 import wordBankHard from "../wordle-bank-hard.txt";
 import wordBankMedium from "../wordle-bank-medium.txt";
 import wordBankEasy from "../wordle-bank-easy.txt";
-<<<<<<< HEAD
-import InvadlidWord from "../components/games/Status";
-=======
-import Status from "../components/games/Status"
->>>>>>> b4848c3269fcc4f0247bb6fb2ae73dc1bfcf3e7b
+import InvadlidWord from "../components/games/InvadlidWord";
 
 export const GameContext = createContext();
 
@@ -168,11 +164,7 @@ export function GameProvider({ len, trytime, children }) {
       setOpen
     }}
     >
-<<<<<<< HEAD
       <InvadlidWord  />
-=======
-      <Status  />
->>>>>>> b4848c3269fccad4f0247bb6fb2ae73dc1bfcf3e7b
       {children}
     </GameContext.Provider>
   )
