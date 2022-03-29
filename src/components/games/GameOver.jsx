@@ -1,4 +1,5 @@
 import React from "react";
+import { Button, Header, Icon, Segment, Comment } from 'semantic-ui-react'
 import { useGameContext } from '../../contexts/GameProvider'
 import {  Link } from 'react-router-dom';
 
@@ -10,19 +11,28 @@ function GameOver() {
   } = useGameContext();
 
   return (
-    <div className="gameOver">
-      <h3>
-        {gameOver.guessedWord
-          ? "Congradulations! You win."
-          : "You Failed to Guess the Word"}
-      </h3>
-      <h1>Correct Word: {correctWord}</h1>
-      {gameOver.guessedWord && (
-        <h3>You guessed in {currAttempt.attempt} attempts</h3>
-      )}
-      <Link className='item ui button' to='/'>
-        Play again
-      </Link>
+    <div className="gameover">
+      <h1>
+       {gameOver.guessedWord
+                ? <h3>Congradulations! You win.</h3>
+                : <h1>Sorry! You Failed to Guess the Word</h1>}
+      </h1>
+    <Comment>
+        <Comment.Content>
+          <Comment.Metadata>
+          <span>Correct Word: {correctWord}</span>
+           </Comment.Metadata>
+        <Comment.Text> 
+        {gameOver.guessedWord && (
+            <p>You guessed in {currAttempt.attempt} attempts</p>
+          )}
+         </Comment.Text>
+        </Comment.Content>
+      </Comment>
+        <Header>Would you like another round? </Header>  
+        <Link className='ui button primary' to='/'>
+                Play again
+          </Link>
     </div>
   );
 }

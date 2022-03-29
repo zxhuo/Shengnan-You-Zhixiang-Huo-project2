@@ -8,11 +8,11 @@ import { useGameContext } from '../../contexts/GameProvider'
 function Game() {
 
     const { gameOver } = useGameContext();
-    
+
     return (
         <div className="game ui container">      
-               <Board />
-               {gameOver.gameOver ? <GameOver /> : <Keyboard />}
+            <Board />
+            {gameOver.gameOver ? <GameOver />   : <Keyboard />}
         </div>
       );
 }
