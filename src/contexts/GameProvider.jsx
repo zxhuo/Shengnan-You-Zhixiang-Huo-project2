@@ -2,7 +2,7 @@ import React, { useState, createContext, useEffect, useContext } from "react";
 import wordBankHard from "../wordle-bank-hard.txt";
 import wordBankMedium from "../wordle-bank-medium.txt";
 import wordBankEasy from "../wordle-bank-easy.txt";
-import WrongWord from "../components/games/WrongWord";
+import InvadlidWord from "../components/games/Status";
 
 export const GameContext = createContext();
 
@@ -25,6 +25,9 @@ export function GameProvider({ len, trytime, children }) {
     gameOver: false,
     guessedWord: false,
   });
+  const [open, setOpen] = useState(false);
+
+
   const setNewBoard = (board, key) => {
     console.log(board + " board");
     console.log(correctWord);
@@ -105,6 +108,7 @@ export function GameProvider({ len, trytime, children }) {
     } else {
       //TODO: alert word is not on the list.
       clearBoard(currAttempt.attempt);
+      setOpen(true);
       setCurrAttempt({ ...currAttempt,  letter: 0 });
       return;
     }
@@ -155,9 +159,11 @@ export function GameProvider({ len, trytime, children }) {
       setDisabledLetters,
       disabledLetters,
       gameOver,
+      open,
+      setOpen
     }}
     >
-      <WrongWord  />
+      <InvadlidWord  />
       {children}
     </GameContext.Provider>
   )
