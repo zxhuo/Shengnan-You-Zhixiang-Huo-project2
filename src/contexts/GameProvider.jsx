@@ -87,8 +87,6 @@ export function GameProvider({ len, trytime, children }) {
     console.log("cw" + correctWord);
     console.log("before enter" + currAttempt.letter)
 
-    // Since “hat” is too short, 
-    // the game prompts a longer word and does not deduct any attempts.
     if (currAttempt.letter  < col) {
       // TODO: alert word is too short.
       clearBoard(currAttempt.attempt);
@@ -110,9 +108,8 @@ export function GameProvider({ len, trytime, children }) {
       setCurrAttempt({ ...currAttempt,  letter: 0 });
       return;
     }
-    
+
     if (currWord === correctWord.toUpperCase()) {
-      console.log("game over - win");
       setGameOver({ gameOver: true, guessedWord: true });
       return;
     }
@@ -139,7 +136,7 @@ export function GameProvider({ len, trytime, children }) {
       letter: (currAttempt.letter + 1),
     });
   };
-  
+
   return (
     <GameContext.Provider
       value={{
