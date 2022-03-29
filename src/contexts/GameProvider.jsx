@@ -1,5 +1,4 @@
 import React, { useState, createContext, useEffect, useContext } from "react";
-import randomWords from 'random-words'
 import wordBankHard from "../wordle-bank-hard.txt";
 import wordBankMedium from "../wordle-bank-medium.txt";
 import wordBankEasy from "../wordle-bank-easy.txt";
@@ -66,16 +65,14 @@ export function GameProvider({ len, trytime, children }) {
         case 5: bank = wordBankEasy; break;
         default: bank = wordBankEasy; break;
       }
-      wordArr = randomWords({ exactly: 100000, min: 5, max: len });
-      selectWord = wordArr[Math.floor(Math.random() * wordArr.length)];
-      wordSet = new Set(wordArr);
-      // await fetch(bank)
-      //   .then((response) => response.text())
-      //   .then((result) => {
-      //     const wordArr = result.split("\n");
-      //     selectWord = wordArr[Math.floor(Math.random() * wordArr.length)];
-      //     wordSet = new Set(wordArr);
-      //   });
+      
+      await fetch(bank)
+        .then((response) => response.text())
+        .then((result) => {
+          const wordArr = result.split("\n").map(word => word.toLowerCase());
+          selectWord = wordArr[Math.floor(Math.random() * wordArr.length)];
+          wordSet = new Set(wordArr);
+        });
       return { wordSet, selectWord };
     };
     generateWordSet().then((words) => {
