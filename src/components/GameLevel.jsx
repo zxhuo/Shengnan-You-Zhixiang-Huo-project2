@@ -8,13 +8,13 @@ function GameLevel() {
     let trytime;
     if (level === 'hard') {
         len = 7;
-        trytime = 5;
+        trytime = 2;
     } else if (level === 'medium') {
         len = 6;
-        trytime = 6;
+        trytime = 2;
     }else {
         len = 5;
-        trytime = 7;
+        trytime = 2;
     }
     return (
             <GameProvider len={len} trytime={trytime} >

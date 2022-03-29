@@ -65,7 +65,7 @@ export function GameProvider({ len, trytime, children }) {
         case 5: bank = wordBankEasy; break;
         default: bank = wordBankEasy; break;
       }
-      
+
       await fetch(bank)
         .then((response) => response.text())
         .then((result) => {
@@ -84,24 +84,35 @@ export function GameProvider({ len, trytime, children }) {
     
 
   const onEnter = () => {
+    console.log("cw" + correctWord);
     console.log("before enter" + currAttempt.letter)
-    if (currAttempt.letter  < col) return;
+
+    // Since “hat” is too short, 
+    // the game prompts a longer word and does not deduct any attempts.
+    if (currAttempt.letter  < col) {
+      // TODO: alert word is too short.
+      clearBoard(currAttempt.attempt);
+      setCurrAttempt({ ...currAttempt,  letter: 0 });
+      return;
+    }
+
     console.log("after enter" + currAttempt.letter)
     let currWord = "";
     for (let i = 0; i < col; i++) {
       currWord += board[currAttempt.attempt][i];
     }
+
     if (wordSet.has(currWord.toLowerCase())) {
       setCurrAttempt({ attempt: currAttempt.attempt + 1, letter: 0 });
-
     } else {
+      //TODO: alert word is not on the list.
       clearBoard(currAttempt.attempt);
-      
       setCurrAttempt({ ...currAttempt,  letter: 0 });
       return;
     }
-
-    if (currWord === correctWord) {
+    
+    if (currWord === correctWord.toUpperCase()) {
+      console.log("game over - win");
       setGameOver({ gameOver: true, guessedWord: true });
       return;
     }
