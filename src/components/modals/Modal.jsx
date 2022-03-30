@@ -2,6 +2,7 @@ import React from 'react'
 import { Button, Header, Icon, Modal } from 'semantic-ui-react'
 import { useGameContext } from '../../contexts/GameProvider'
 
+
 function GameOverModal() {
 
     const { gameOver } = useGameContext();

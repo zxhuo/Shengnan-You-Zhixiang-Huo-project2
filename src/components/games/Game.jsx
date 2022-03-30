@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Board from "./Board";
 import Keyboard from "./Keyboard";
 import GameOver from "./GameOver";

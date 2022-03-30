@@ -2,8 +2,8 @@ import React, { useState, createContext, useEffect, useContext } from "react";
 import wordBankHard from "../wordle-bank-hard.txt";
 import wordBankMedium from "../wordle-bank-medium.txt";
 import wordBankEasy from "../wordle-bank-easy.txt";
-import InvalidWord from "../components/games/InvalidWord";
-import Modal from "../components/games/Modal";
+import InvalidWord from "../components/modals/InvalidWord";
+import Modal from "../components/modals/Modal";
 
 export const GameContext = createContext();
 
@@ -29,6 +29,7 @@ export function GameProvider({ len, trytime, children }) {
   });
 
   const [open, setOpen] = useState(false);
+  const [warningType, setWarningType] = useState(" ");
   const [modal, setModal] = useState(false);
 
 // update board using setBoard() when enter or clear letter
@@ -39,7 +40,6 @@ export function GameProvider({ len, trytime, children }) {
     for (let r = 0; r< board.length; r++) {
       newBoard[r] = [...board[r]];
     }
-    console.log(newBoard + " newboard");
     if (key === '') {
       newBoard[currAttempt.attempt][currAttempt.letter-1] = key;
     }
@@ -83,6 +83,7 @@ export function GameProvider({ len, trytime, children }) {
         });
       return { wordSet, selectWord };
     };
+
     generateWordSet().then((words) => {
       setWordSet(words.wordSet);
       setCorrectWord(words.selectWord);
@@ -96,6 +97,8 @@ export function GameProvider({ len, trytime, children }) {
     if (currAttempt.letter  < col) {
       // TODO: alert word is too short.
       clearBoard(currAttempt.attempt);
+      setWarningType("1");
+      setOpen(true);
       setCurrAttempt({ ...currAttempt,  letter: 0 });
       return;
     }
@@ -107,8 +110,8 @@ export function GameProvider({ len, trytime, children }) {
     if (wordSet.has(currWord.toLowerCase())) {
       setCurrAttempt({ attempt: currAttempt.attempt + 1, letter: 0 });
     } else {
-      //TODO: alert word is not on the list.
       clearBoard(currAttempt.attempt);
+      setWarningType("2");
       setOpen(true);
       setCurrAttempt({ ...currAttempt,  letter: 0 });
       return;
@@ -164,10 +167,11 @@ export function GameProvider({ len, trytime, children }) {
       open,
       setOpen,
       modal,
-      setModal
+      setModal,
+      warningType,
+      setWarningType,
     }}
     >
-      <Modal />
       <InvalidWord  />
         {children}
     </GameContext.Provider>

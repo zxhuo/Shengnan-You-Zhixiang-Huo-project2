@@ -1,7 +1,7 @@
 import React from 'react'
 import {  useState } from 'react';
 import { Button, Header, Icon, Modal } from 'semantic-ui-react'
-
+import Letter from '../components/games/Letter'
 
 function Rule(props) {
 
@@ -27,6 +27,39 @@ function Rule(props) {
 
         <div className='examples'>
           <p><strong>EXAMPLE</strong></p>
+          <div>
+
+          <div>
+            <p>The letter A is in the word and in the correct spot.</p>
+            <div class="row">
+              <div class="letter" id="correct">A</div>
+              <div class="letter" >P</div>
+              <div class="letter" >P</div>
+              <div class="letter" >L</div>
+              <div class="letter" >E</div>
+            </div>
+          </div>
+
+            <p>The letter A is in the word but in the wrong spot.</p>
+            <div class="row">
+              <div class="letter" id="almost">A</div>
+              <div class="letter" >P</div>
+              <div class="letter" >P</div>
+              <div class="letter" >L</div>
+              <div class="letter" >E</div>
+            </div>
+          </div>
+
+          <div>
+            <p>The letter A is not in the word in any spot.</p>
+            <div class="row">
+              <div class="letter" id="error">A</div>
+              <div class="letter" >P</div>
+              <div class="letter" >P</div>
+              <div class="letter" >L</div>
+              <div class="letter" >E</div>
+            </div>
+          </div>
         </div>
       </div>
     </Modal.Content>

@@ -1,5 +1,5 @@
-import React from 'react';
-import { Outlet, Link} from 'react-router-dom';
+import React, { useState }from 'react';
+import { Outlet, Link, useParams } from 'react-router-dom';
 import { Fragment } from 'react';
 import Rule from './Rule'
 

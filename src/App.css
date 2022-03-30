@@ -16,8 +16,6 @@
     height: 60px;
     width: 100%;
     margin: 0;
-    border-bottom: 1px solid grey;
-    display: grid;
     place-items: center;
   }
   
@@ -29,8 +27,8 @@
   }
   .game {
     display: flex;
+    padding-top: 50px;
     align-items: center;
-    padding-top: 100px;
     flex-direction: column;
     justify-content: center;
   }
@@ -46,7 +44,7 @@
   
   .board {
     width: 450px;
-    height: 550px;
+    height: 500px;
     margin:  0 auto;
     padding-bottom: 5px;
     border: 1px solid black;
@@ -64,7 +62,7 @@
   .letter {
     flex: 33%;
     height: 100%;
-    border: 1px solid grey;
+    border: 2px solid grey;
     margin: 5px;
     display: grid;
     place-items: center;
@@ -90,7 +88,7 @@
     width: 700px;
     height: 300px;
     margin-top: 60px;
-
+    padding: 50px;
     margin:  0 auto;
   }
   
@@ -136,4 +134,12 @@
   }
   #disabled {
     background-color: #3a393c;
+  }
+
+  .win-pop{
+    color:brown;
+  }
+
+  .lose-pop{
+    color:cornflowerblue;
   }
