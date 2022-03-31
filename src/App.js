@@ -1,10 +1,10 @@
 import React from "react";
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 
-import Home from "./components/Home";
-import Rule from "./components/Rule";
-import Navigation from "./components/Navigation";
-import GameLevel from "./components/GameLevel";
+import Home from "./components/games/Home";
+import Rule from "./components/modals/Rule";
+import Navigation from "./components/games/Navigation";
+import GameLevel from "./components/games/GameLevel";
 
 import "./App.css";
 

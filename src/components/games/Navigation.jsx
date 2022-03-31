@@ -1,7 +1,7 @@
 import React, { useState }from 'react';
 import { Outlet, Link, useParams } from 'react-router-dom';
 import { Fragment } from 'react';
-import Rule from './Rule'
+import Rule from '../modals/Rule'
 
 function Navigation() {
 

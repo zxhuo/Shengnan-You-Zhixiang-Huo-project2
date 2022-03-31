@@ -1,7 +1,7 @@
 import React from 'react'
 import {  useState } from 'react';
 import { Button, Header, Icon, Modal } from 'semantic-ui-react'
-import Letter from '../components/games/Letter'
+import Letter from '../games/Letter'
 
 function Rule(props) {
 

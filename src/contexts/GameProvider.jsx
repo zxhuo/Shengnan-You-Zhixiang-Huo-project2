@@ -3,7 +3,6 @@ import wordBankHard from "../wordle-bank-hard.txt";
 import wordBankMedium from "../wordle-bank-medium.txt";
 import wordBankEasy from "../wordle-bank-easy.txt";
 import InvalidWord from "../components/modals/InvalidWord";
-import Modal from "../components/modals/Modal";
 
 export const GameContext = createContext();
 
@@ -21,15 +20,14 @@ export function GameProvider({ len, trytime, children }) {
   const [board, setBoard] = useState(boardDefault);
   const [currAttempt, setCurrAttempt] = useState({ attempt: 0, letter: 0 });
   const [wordSet, setWordSet] = useState(new Set());
-  const [correctWord, setCorrectWord] = useState(" ");
+  const [correctWord, setCorrectWord] = useState("");
   const [disabledLetters, setDisabledLetters] = useState([]);
   const [gameOver, setGameOver] = useState({
     gameOver: false,
     guessedWord: false,
   });
-
   const [open, setOpen] = useState(false);
-  const [warningType, setWarningType] = useState(" ");
+  const [warningType, setWarningType] = useState("");
   const [modal, setModal] = useState(false);
 
 // update board using setBoard() when enter or clear letter

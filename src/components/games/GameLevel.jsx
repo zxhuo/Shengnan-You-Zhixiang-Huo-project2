@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
-import { GameProvider } from '../contexts/GameProvider'
-import Game from "./games/Game";
+import { GameProvider } from '../../contexts/GameProvider'
+import Game from "./Game";
 function GameLevel() {
     let { level } = useParams();
     let len;
