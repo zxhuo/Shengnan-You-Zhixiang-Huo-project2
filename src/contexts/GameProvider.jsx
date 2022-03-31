@@ -12,15 +12,19 @@ export function useGameContext() {
 } 
 
 export function GameProvider({ len, trytime, children }) {
+
   
   // global state
   const boardDefault = Array(trytime).fill(Array(len).fill(''));
   const [col, setCol] = useState(len);
   const [row, setRow] = useState(trytime);
   const [board, setBoard] = useState(boardDefault);
+  //const [board, setBoard] = useLocalData("board", boardDefault);
   const [currAttempt, setCurrAttempt] = useState({ attempt: 0, letter: 0 });
   const [wordSet, setWordSet] = useState(new Set());
+  //const [wordSet, setWordSet] = useLocalData("wordSet", new Set());
   const [correctWord, setCorrectWord] = useState("");
+  //const [correctWord, setCorrectWord] = useLocalData("word", "");
   const [disabledLetters, setDisabledLetters] = useState([]);
   const [gameOver, setGameOver] = useState({
     gameOver: false,
@@ -29,6 +33,26 @@ export function GameProvider({ len, trytime, children }) {
   const [open, setOpen] = useState(false);
   const [warningType, setWarningType] = useState("");
   const [modal, setModal] = useState(false);
+
+  //save data
+  function getLocalData(key, defaultData) {
+    const saved = localStorage.getItem(key);
+    const initial = JSON.parse(saved);
+    return initial || defaultData;
+  }
+  
+
+  const useLocalData = (key, defaultData) => {
+    const [value, setValue] = useState(() => {
+      return getLocalData(key, defaultData);
+    });
+  
+    useEffect(() => {
+      localStorage.setItem(key, JSON.stringify(value));
+    }, [key, value]);
+  
+    return [value, setValue];
+  };
 
 // update board using setBoard() when enter or clear letter
   const setNewBoard = (board, key) => {
@@ -61,6 +85,7 @@ export function GameProvider({ len, trytime, children }) {
 
   // generate wordArr, selectWord when the Game App was first mount 
   useEffect(() => {
+
     const generateWordSet = async () => {
       let wordSet;
       let selectWord;

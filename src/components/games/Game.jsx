@@ -12,7 +12,7 @@ function Game() {
     return (
         <div className="game ui container">      
             <Board />
-            {gameOver.gameOver ? <GameOver />   : <Keyboard />}
+            {gameOver.gameOver ? <GameOver /> : <Keyboard />}
         </div>
       );
 }
